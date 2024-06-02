@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Blogs from "../../components/blogs.astro";
+
+export async function getStaticPaths() {
+    const allPosts : object[] = await Astro.glob("../posts/*.md")
+    console.log("These are our all Posts" , allPosts);
+    const uniqueTags : string[] = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())]
+    console.log("Unique Tags dikha de mitr" , uniqueTags);
+    return uniqueTags.map((tag) => {
+        const filteredPosts = allPosts.filter((post) => post.frontmatter.tags?.includes(tag));
+        return {
+            params : { tag },
+            props : { posts : filteredPosts}
+        }
+    })
+}
+
+console.log("Astro ka param dikhaiye",Astro)
+
+
+const { tag } = Astro.params
+const { posts } = Astro.props
+
+
+console.log("Tag dihaiye mitr" , tag);
+console.log("Posts hii dikha de mitr" , posts);
+
+// const filterPosts = posts.filter((post) => post.frontmatter.tags?.includes(tag)) 
+// console.log("Filtered Posts are here", filterPosts.url);
+---
+
+{
+    // console.log("Astro ka param dikhaiye",Astro.params)
+}
+
+<BaseLayout pageTitle = {tag}>
+    <p>Posts Tagged with {tag}</p>
+    <ul>
+        <li>Yha kuch kuch hoga</li>
+        {
+            // filterPosts.map((post) => <li><a href={post.url}>{post.frontmatter.title}</a></li>)
+            posts.map((post) => <Blogs url = {post.url} title = {post.frontmatter.title}/>)
+        }
+    </ul>
+</BaseLayout>

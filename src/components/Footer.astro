@@ -1,0 +1,13 @@
+---
+import Social from "./Social.astro"
+// import "../styles/global.css"
+
+
+const platform = "github"
+const username = "withastro"
+---
+<footer class="grid grid-cols-3 place-items-center font-bold text-xl text-gray-600 bg-zinc-400 h-48  w-full">
+    <p class="hover:underline hover:bg-green-700/35 px-4 py-2 rounded-lg">Learn More about my Projects on <Social platform = {platform} username = {username}/>!</p>
+    <p class="hover:underline hover:bg-green-700/35 px-4 py-2 rounded-lg">Learn More about my Projects on <Social platform = "twitter" username = "astrodotbuild"/>!</p>
+    <p class="hover:underline hover:bg-green-700/35 px-4 py-2 rounded-lg">Learn More about my Projects on <Social platform = "youtube" username = "withastro"/>!</p>
+</footer>

@@ -1,0 +1,13 @@
+---
+import Navigation from "./Navigation.astro";
+import Hamburger from "./hamburger.astro";
+
+const {className } = Astro.props
+---
+
+<header class={`   ${className}`}>
+    <nav class="flex flex-col text-purple-700 items-center justify-center my-[1rem]">
+        <Hamburger/>
+        <Navigation/>
+    </nav>
+</header>
